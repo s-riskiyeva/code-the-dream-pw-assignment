@@ -1,5 +1,9 @@
+body {
+  background-color: #edbfc6;
+}
+
 h1 {
-  color: #5aaf76;
+  color: #260c1a;
   text-align: center;
   font-size: 40px;
   margin-top: 120px;
@@ -12,8 +16,8 @@ button {
   margin-right: auto;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #abd8b2;
-  color: white;
+  background-color: #af8d86;
+  color: #432e36;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
@@ -30,9 +34,9 @@ input {
   margin-right: auto;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #abd8b2;
+  background-color: #af8d86;
   padding: 12px 20px;
-  color: white;
+  color: #432e36;
   font-size: 20px;
   font-weight: bold;
   text-align: center;
@@ -40,4 +44,9 @@ input {
   border-radius: 15px;
   width: 300px;
   transition: border-color 0.2s ease;
+}
+
+input::placeholder {
+  color: white;
+  opacity: 1;
 }
