@@ -1,4 +1,4 @@
-const { apiKey } = require("./config.js");
+import { apiKey } from "./config.js";
 
 const url = "https://api.thecatapi.com/v1/images/search";
 
