@@ -1,12 +1,14 @@
-import { API_KEY } from "./config.js";
+const { apiKey } = require("./config.js");
 
 const url = "https://api.thecatapi.com/v1/images/search";
+
+console.log(apiKey);
 
 async function catsFacts() {
   const response = await fetch(url, {
     method: "GET",
     headers: {
-      "x-api-key": API_KEY,
+      "x-api-key": apiKey,
       "Content-Type": "application/json",
     },
   });
