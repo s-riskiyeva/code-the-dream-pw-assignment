@@ -1,10 +1,8 @@
 import { apiKey } from "./config.js";
 
-const url = "https://api.thecatapi.com/v1/images/search";
+const url = "https://api.thecatapi.com/v1/breeds";
 
-console.log(apiKey);
-
-async function catsFacts() {
+async function catsBreeds() {
   const response = await fetch(url, {
     method: "GET",
     headers: {
@@ -13,8 +11,7 @@ async function catsFacts() {
     },
   });
 
-  const factsData = await response.json();
-  console.log(factsData);
+  const listOfBreeds = await response.json();
 }
 
-catsFacts();
+catsBreeds();
