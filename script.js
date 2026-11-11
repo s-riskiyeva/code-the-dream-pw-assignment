@@ -39,20 +39,6 @@ async function countryOfOriginFilter(country) {
     const listElement = document.createElement("li");
     listElement.textContent = `${breedData.name}`;
 
-    // breed_group
-    // description
-    // history
-    // life_span
-    // temperament
-    // weight.imperial
-    // image
-    console.log(breedData.breed_group);
-    console.log(breedData.description);
-    console.log(breedData.history);
-    console.log(breedData.life_span);
-    console.log(breedData.temperament);
-    console.log(breedData.weight.imperial);
-
     listElement.addEventListener("click", () => {
       const breedDetailsContainer = document.getElementById("breedDetailsCard");
 
@@ -69,6 +55,11 @@ async function countryOfOriginFilter(country) {
           </div>
 
           <div class="info-block">
+            <h3>Temperament</h3>
+            <p class="temperament">${breedData.temperament}</p>
+          </div>
+
+          <div class="info-block">
             <h3>Description</h3>
             <p>${breedData.description}</p>
           </div>
@@ -76,11 +67,6 @@ async function countryOfOriginFilter(country) {
           <div class="info-block">
             <h3>History</h3>
             <p>${breedData.history}</p>
-          </div>
-
-          <div class="info-block">
-            <h3>Temperament</h3>
-            <p class="temperament">${breedData.temperament}</p>
           </div>
         </div>
       </div>
