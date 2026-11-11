@@ -2,7 +2,7 @@ import { apiKey } from "./config.js";
 
 const url = "https://api.thecatapi.com/v1/breeds";
 
-async function catsBreeds() {
+async function catsAllBreeds() {
   const response = await fetch(url, {
     method: "GET",
     headers: {
@@ -11,7 +11,19 @@ async function catsBreeds() {
     },
   });
 
-  const listOfBreeds = await response.json();
+  const listOfAllBreeds = await response.json();
+
+  return listOfAllBreeds;
 }
 
-catsBreeds();
+async function countryOfOriginFilter(country = "Egypt") {
+  const listOfAllBreeds = await catsAllBreeds();
+
+  const breedsByCountry = listOfAllBreeds.filter(
+    (breeds) => breeds.origin === country
+  );
+
+  console.log(breedsByCountry);
+}
+
+countryOfOriginFilter();
