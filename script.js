@@ -26,8 +26,8 @@ async function countryOfOriginFilter(country) {
 
   breedsByCountry.innerHTML = "";
 
-  const listOfBreedsByCountry = listOfAllBreeds.filter(
-    (breeds) => breeds.origin === country
+  const listOfBreedsByCountry = listOfAllBreeds.filter((breed) =>
+    breed.origin?.toLowerCase().includes(country.toLowerCase())
   );
 
   if (listOfBreedsByCountry.length === 0)
@@ -38,8 +38,6 @@ async function countryOfOriginFilter(country) {
   listOfBreedsByCountry.forEach((breedData) => {
     const listElement = document.createElement("li");
     listElement.textContent = `${breedData.name}`;
-
-    console.log(breedData);
 
     listElement.addEventListener("click", () => {
       const breedDetailsContainer = document.getElementById("breedDetailsCard");
