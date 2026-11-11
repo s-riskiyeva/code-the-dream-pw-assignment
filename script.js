@@ -39,11 +39,21 @@ async function countryOfOriginFilter(country) {
     const listElement = document.createElement("li");
     listElement.textContent = `${breedData.name}`;
 
+    console.log(breedData);
+
     listElement.addEventListener("click", () => {
       const breedDetailsContainer = document.getElementById("breedDetailsCard");
+      const imageUrl = breedData.image?.url;
+
+      const imageContent = imageUrl
+        ? `<img src="${imageUrl}" alt="${breedData.name}" />`
+        : `<p class="no-image-placeholder">No photo available for ${breedData.name} breed`;
 
       breedDetailsContainer.innerHTML = `
       <div class="breed-details-card">
+        <div class="breed-image">
+          ${imageContent}
+        </div>
         
         <div class="profile-data">
           <h2>${breedData.name}</h2>
