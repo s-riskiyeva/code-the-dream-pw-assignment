@@ -24,6 +24,8 @@ async function catsAllBreeds() {
 async function countryOfOriginFilter(country) {
   const listOfAllBreeds = await catsAllBreeds();
 
+  console.log(listOfAllBreeds);
+
   breedsByCountry.innerHTML = "";
 
   const listOfBreedsByCountry = listOfAllBreeds.filter((breed) =>
@@ -57,24 +59,33 @@ async function countryOfOriginFilter(country) {
           <h2>${breedData.name}</h2>
           
           <div class="breed-data">
-            <div class="data-items"><b>Group:</b> ${breedData.breed_group}</div>
-            <div class="data-items"><b>Lifespan:</b> ${breedData.life_span} yrs</div>
-            <div class="data-items"><b>Weight:</b> ${breedData.weight.imperial} lbs</div>
+            <div class="data-items"><b>Group:</b> ${
+              breedData.breed_group || "No data"
+            }</div>
+            <div class="data-items"><b>Lifespan:</b> ${
+              breedData.life_span || "No data"
+            } yrs</div>
+            <div class="data-items"><b>Weight:</b> ${
+              breedData.weight?.imperial || "No data"
+            } lbs</div>
           </div>
+
 
           <div class="info-block">
             <h3>Temperament</h3>
-            <p class="temperament">${breedData.temperament}</p>
+            <p class="temperament">${
+              breedData.temperament || "No data available"
+            }</p>
           </div>
 
           <div class="info-block">
             <h3>Description</h3>
-            <p>${breedData.description}</p>
+            <p>${breedData.description || "No data available"}</p>
           </div>
 
           <div class="info-block">
             <h3>History</h3>
-            <p>${breedData.history}</p>
+            <p>${breedData.history || "No data available"}</p>
           </div>
         </div>
       </div>
