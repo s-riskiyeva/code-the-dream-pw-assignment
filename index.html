@@ -7,12 +7,27 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>This is the Cats' World!</h1>
-    <input type="text" id="nameOfCountryInput" placeholder="Country name..." />
-    <button id="nameOfCountryButton">Press Me!</button>
-    <div id="listOfBreeds"></div>
-    <input type="text" id="input2" placeholder="Input some text here...." />
-    <button id="button2">Press Me!</button>
-    <script type="module" src="script.js"></script>
+    <div class="main-layout">
+      <main class="left-panel">
+        <h1>This is the Cats' World!</h1>
+        <input
+          type="text"
+          id="nameOfCountryInput"
+          placeholder="Country name...e.g., Egypt, United States..."
+        />
+        <button id="nameOfCountryButton">Find breeds</button>
+        <div id="listOfBreeds"></div>
+        <script type="module" src="script.js"></script>
+      </main>
+
+      <aside class="right-panel" id="breedDetailsCard">
+        <div class="right-panel-placeholder-message">
+          <p>
+            Select a breed card from the left panel to view full facts and
+            history details.
+          </p>
+        </div>
+      </aside>
+    </div>
   </body>
 </html>
