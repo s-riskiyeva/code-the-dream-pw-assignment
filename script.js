@@ -165,9 +165,6 @@ async function fetchRandomCats() {
       const breedName = img.breeds[0].name;
       const breedOrigin = img.breeds[0].origin;
 
-      console.log(breedName);
-      console.log(breedOrigin);
-
       return `
         <div class="gallery-card">
           <div class="gallery-card-inner">
