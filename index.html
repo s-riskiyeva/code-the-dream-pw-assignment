@@ -14,31 +14,36 @@
         <button id="catImagesGalleryButton">Cat Images Callery</button>
       </nav>
     </header>
-    <div class="main-layout">
-      <main class="left-panel">
-        <input
-          type="text"
-          id="nameOfCountryInput"
-          placeholder="Country name...e.g., Egypt, United States..."
-        />
-        <button id="nameOfCountryButton">Find breeds</button>
-        <div id="listOfBreeds"></div>
-      </main>
-      <aside class="right-panel" id="breedDetailsCard">
-        <div class="right-panel-placeholder-message">
-          <p>
-            Select a breed card from the left panel to view full facts and
-            history details.
-          </p>
-        </div>
-      </aside>
-    </div>
 
-    <section id="imagesGallerySection" style="display: none">
-      <h2>Cat Images Gallery</h2>
-      <button id="loadRandomCatImageButton">Wanna See New Cats</button>
-      <div id="catsImages"></div>
-    </section>
+    <main>
+      <section id="breedsSection" class="main-layout" style="display: none">
+        <div class="left-panel-breeds-search">
+          <input
+            type="text"
+            id="nameOfCountryInput"
+            placeholder="Country name...e.g., Egypt, United States..."
+          />
+          <button id="nameOfCountryButton">Find breeds</button>
+          <div id="listOfBreeds"></div>
+        </div>
+
+        <aside class="right-panel" id="breedDetailsCard">
+          <div class="right-panel-placeholder-message">
+            <p>
+              Select a breed card from the left panel to view full facts and
+              history details
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <section id="imagesGallerySection" style="display: none">
+        <h2>Cat Images Gallery</h2>
+        <button id="loadRandomCatImageButton">Wanna See More Cats</button>
+        <div id="catsImages"></div>
+      </section>
+    </main>
+
     <script type="module" src="script.js"></script>
   </body>
 </html>
