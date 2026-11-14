@@ -1,7 +1,6 @@
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const urlAllBreeds = "https://api.thecatapi.com/v1/breeds";
-
 const urlImagesSearch = "https://api.thecatapi.com/v1/images/search";
 
 const breedsByCountryButton = document.getElementById("breedsByCountryButton");
@@ -14,6 +13,11 @@ const imagesGallerySection = document.getElementById("imagesGallerySection");
 const nameOfCountryInput = document.getElementById("nameOfCountryInput");
 const nameOfCountryButton = document.getElementById("nameOfCountryButton");
 const breedsByCountry = document.getElementById("listOfBreeds");
+
+const catsImagesContainer = document.getElementById("catsImages");
+const loadRandomCatImageButton = document.getElementById(
+  "loadRandomCatImageButton"
+);
 
 breedsByCountryButton.addEventListener("click", () => {
   breedsSection.style.display = "flex";
@@ -42,15 +46,11 @@ async function catsAllBreeds() {
     },
   });
 
-  const listOfAllBreeds = await response.json();
-
-  return listOfAllBreeds;
+  return await response.json();
 }
 
 async function countryOfOriginFilter(country) {
   const listOfAllBreeds = await catsAllBreeds();
-
-  console.log(listOfAllBreeds);
 
   breedsByCountry.innerHTML = "";
 
@@ -58,8 +58,10 @@ async function countryOfOriginFilter(country) {
     breed.origin?.toLowerCase().includes(country.toLowerCase())
   );
 
-  if (listOfBreedsByCountry.length === 0)
+  if (listOfBreedsByCountry.length === 0) {
     breedsByCountry.innerHTML = `<p>No breeds found originating from ${country}.</p>`;
+    return;
+  }
 
   const list = document.createElement("ul");
 
@@ -73,7 +75,7 @@ async function countryOfOriginFilter(country) {
 
       const imageContent = imageUrl
         ? `<img src="${imageUrl}" alt="${breedData.name}" />`
-        : `<p class="no-image-placeholder">No photo available for ${breedData.name} breed`;
+        : `<p class="no-image-placeholder">No photo available for ${breedData.name} breed</p>`;
 
       breedDetailsContainer.innerHTML = `
       <div class="breed-details-card">
@@ -95,7 +97,6 @@ async function countryOfOriginFilter(country) {
               breedData.weight?.imperial || "No data"
             } lbs</div>
           </div>
-
 
           <div class="info-block">
             <h3>Temperament</h3>
@@ -141,8 +142,6 @@ nameOfCountryButton.addEventListener("click", () => {
   nameOfCountryInput.value = "";
 });
 
-const catsImagesContainer = document.getElementById("catsImages");
-
 async function fetchCatsImages(has_breeds = 1, include_breeds = 1, limit = 3) {
   const queryParams = `?has_breeds=${has_breeds}&include_breeds=${include_breeds}&limit=${limit}`;
 
@@ -154,10 +153,7 @@ async function fetchCatsImages(has_breeds = 1, include_breeds = 1, limit = 3) {
     },
   });
 
-  const searchResults = await response.json();
-
-  console.log(searchResults);
-  return searchResults;
+  return await response.json();
 }
 
 async function fetchRandomCats() {
@@ -166,15 +162,33 @@ async function fetchRandomCats() {
 
   catsImagesContainer.innerHTML = imagesData
     .map((img) => {
+      const breedName = img.breeds[0].name;
+      const breedOrigin = img.breeds[0].origin;
+
+      console.log(breedName);
+      console.log(breedOrigin);
+
       return `
         <div class="gallery-card">
-          <img src="${img.url}" />
-          <div class="gallery-card-info">
+          <div class="gallery-card-inner">
+            <div class="gallery-card-front">
+              <img src="${img.url}" alt="${breedName}" loading="lazy" />
+            </div>
+            <div class="gallery-card-back">
+              <h3>Breed: ${breedName}</h3>
+              <p><b>Origin:</b> ${breedOrigin}</p>
+            </div>
           </div>
         </div>
       `;
     })
     .join("");
+
+  document.querySelectorAll(".gallery-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("is-flipped");
+    });
+  });
 }
 
 loadRandomCatImageButton.addEventListener("click", fetchRandomCats);
