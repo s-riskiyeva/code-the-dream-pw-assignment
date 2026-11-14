@@ -1,24 +1,33 @@
 const apiKey = import.meta.env.VITE_API_KEY;
 
+// CatAPI URL for breeds data
 const urlAllBreeds = "https://api.thecatapi.com/v1/breeds";
+
+// CatAPI URL for search of images
 const urlImagesSearch = "https://api.thecatapi.com/v1/images/search";
 
+// buttons for navigation between two sections
 const breedsByCountryButton = document.getElementById("breedsByCountryButton");
 const catImagesGalleryButton = document.getElementById(
   "catImagesGalleryButton"
 );
+
+// main view sections
 const breedsSection = document.getElementById("breedsSection");
 const imagesGallerySection = document.getElementById("imagesGallerySection");
 
+// element locators for breeds by country dearch section
 const nameOfCountryInput = document.getElementById("nameOfCountryInput");
 const nameOfCountryButton = document.getElementById("nameOfCountryButton");
 const breedsByCountry = document.getElementById("listOfBreeds");
 
+// element locators for cats images quiz section
 const catsImagesContainer = document.getElementById("catsImages");
 const loadRandomCatImageButton = document.getElementById(
   "loadRandomCatImageButton"
 );
 
+// show the breeds by country section
 breedsByCountryButton.addEventListener("click", () => {
   breedsSection.style.display = "flex";
   imagesGallerySection.style.display = "none";
@@ -27,6 +36,7 @@ breedsByCountryButton.addEventListener("click", () => {
   catImagesGalleryButton.classList.remove("active");
 });
 
+// show the cat images quiz section
 catImagesGalleryButton.addEventListener("click", () => {
   breedsSection.style.display = "none";
   imagesGallerySection.style.display = "block";
@@ -37,6 +47,8 @@ catImagesGalleryButton.addEventListener("click", () => {
   fetchRandomCats();
 });
 
+// --------------------> ENDPOINT 1 <--------------------
+//fetch full list of cat breeds
 async function catsAllBreeds() {
   const response = await fetch(urlAllBreeds, {
     method: "GET",
@@ -49,6 +61,7 @@ async function catsAllBreeds() {
   return await response.json();
 }
 
+// filter breeds by country from user input and render the list as clickable buttons
 async function countryOfOriginFilter(country) {
   const listOfAllBreeds = await catsAllBreeds();
 
@@ -125,6 +138,7 @@ async function countryOfOriginFilter(country) {
   breedsByCountry.appendChild(list);
 }
 
+//trigger the filter
 nameOfCountryButton.addEventListener("click", () => {
   const userInputValue = nameOfCountryInput.value.trim().replace(/\s+/g, " ");
 
@@ -142,6 +156,8 @@ nameOfCountryButton.addEventListener("click", () => {
   nameOfCountryInput.value = "";
 });
 
+// --------------------> ENDPOINT 2 <--------------------
+// fetch 3 random cats images with relevant breeds and origin data
 async function fetchCatsImages(has_breeds = 1, include_breeds = 1, limit = 3) {
   const queryParams = `?has_breeds=${has_breeds}&include_breeds=${include_breeds}&limit=${limit}`;
 
@@ -156,6 +172,7 @@ async function fetchCatsImages(has_breeds = 1, include_breeds = 1, limit = 3) {
   return await response.json();
 }
 
+// redner image-cards and reveal answers
 async function fetchRandomCats() {
   catsImagesContainer.innerHTML = "<p>Loading cats images...</p>";
   const imagesData = await fetchCatsImages(1, 1, 3);
@@ -188,4 +205,5 @@ async function fetchRandomCats() {
   });
 }
 
+// trigger fetching and rendering a new set of 3 random cats
 loadRandomCatImageButton.addEventListener("click", fetchRandomCats);
