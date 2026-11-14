@@ -1,14 +1,40 @@
-import { apiKey } from "./config.js";
+const apiKey = import.meta.env.VITE_API_KEY;
 
-const url = "https://api.thecatapi.com/v1/breeds";
+const urlAllBreeds = "https://api.thecatapi.com/v1/breeds";
+
+const urlImagesSearch = "https://api.thecatapi.com/v1/images/search";
+
+const breedsByCountryButton = document.getElementById("breedsByCountryButton");
+const catImagesGalleryButton = document.getElementById(
+  "catImagesGalleryButton"
+);
+const breedsSection = document.getElementById("breedsSection");
+const imagesGallerySection = document.getElementById("imagesGallerySection");
 
 const nameOfCountryInput = document.getElementById("nameOfCountryInput");
 const nameOfCountryButton = document.getElementById("nameOfCountryButton");
-
 const breedsByCountry = document.getElementById("listOfBreeds");
 
+breedsByCountryButton.addEventListener("click", () => {
+  breedsSection.style.display = "flex";
+  imagesGallerySection.style.display = "none";
+
+  breedsByCountryButton.classList.add("active");
+  catImagesGalleryButton.classList.remove("active");
+});
+
+catImagesGalleryButton.addEventListener("click", () => {
+  breedsSection.style.display = "none";
+  imagesGallerySection.style.display = "block";
+
+  catImagesGalleryButton.classList.add("active");
+  breedsByCountryButton.classList.remove("active");
+
+  fetchRandomCats();
+});
+
 async function catsAllBreeds() {
-  const response = await fetch(url, {
+  const response = await fetch(urlAllBreeds, {
     method: "GET",
     headers: {
       "x-api-key": apiKey,
@@ -114,3 +140,41 @@ nameOfCountryButton.addEventListener("click", () => {
   countryOfOriginFilter(countryName);
   nameOfCountryInput.value = "";
 });
+
+const catsImagesContainer = document.getElementById("catsImages");
+
+async function fetchCatsImages(has_breeds = 1, include_breeds = 1, limit = 3) {
+  const queryParams = `?has_breeds=${has_breeds}&include_breeds=${include_breeds}&limit=${limit}`;
+
+  const response = await fetch(`${urlImagesSearch}${queryParams}`, {
+    method: "GET",
+    headers: {
+      "x-api-key": apiKey,
+      "Content-Type": "application/json",
+    },
+  });
+
+  const searchResults = await response.json();
+
+  console.log(searchResults);
+  return searchResults;
+}
+
+async function fetchRandomCats() {
+  catsImagesContainer.innerHTML = "<p>Loading cats images...</p>";
+  const imagesData = await fetchCatsImages(1, 1, 3);
+
+  catsImagesContainer.innerHTML = imagesData
+    .map((img) => {
+      return `
+        <div class="gallery-card">
+          <img src="${img.url}" />
+          <div class="gallery-card-info">
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+loadRandomCatImageButton.addEventListener("click", fetchRandomCats);
