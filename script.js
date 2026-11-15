@@ -158,7 +158,7 @@ nameOfCountryButton.addEventListener("click", () => {
 
 // --------------------> ENDPOINT 2 <--------------------
 // fetch 3 random cats images with relevant breeds and origin data
-async function fetchCatsImages(has_breeds = 1, include_breeds = 1, limit = 3) {
+async function fetchCatsImages(has_breeds = 1, include_breeds = 1, limit = 4) {
   const queryParams = `?has_breeds=${has_breeds}&include_breeds=${include_breeds}&limit=${limit}`;
 
   const response = await fetch(`${urlImagesSearch}${queryParams}`, {
@@ -175,7 +175,7 @@ async function fetchCatsImages(has_breeds = 1, include_breeds = 1, limit = 3) {
 // redner image-cards and reveal answers
 async function fetchRandomCats() {
   catsImagesContainer.innerHTML = "<p>Loading cats images...</p>";
-  const imagesData = await fetchCatsImages(1, 1, 3);
+  const imagesData = await fetchCatsImages(1, 1, 4);
 
   catsImagesContainer.innerHTML = imagesData
     .map((img) => {

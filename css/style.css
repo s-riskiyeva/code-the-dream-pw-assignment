@@ -3,7 +3,7 @@ body {
   margin: 0;
 }
 
-// header and navigation
+/* header and navigation */
 .header {
   text-align: center;
   padding: 20px;
@@ -40,7 +40,7 @@ body {
   color: #f5ebe0;
 }
 
-// shared buttons and inouts
+/* shared buttons and inouts */
 button {
   display: block;
   margin: 20px auto;
@@ -85,7 +85,7 @@ input::placeholder {
   opacity: 0.6;
 }
 
-// breeds by country section
+/* breeds by country section */
 .main-layout {
   display: flex;
   min-height: 100vh;
@@ -120,7 +120,7 @@ input::placeholder {
   opacity: 0.7;
 }
 
-// breeds search results renering
+/* breeds search results renering */
 #listOfBreeds {
   max-width: 600px;
   margin: 20px auto;
@@ -143,7 +143,7 @@ input::placeholder {
   gap: 12px;
 }
 
-// buttons with breed names/data
+/* buttons with breed names/data */
 #listOfBreeds li {
   background-color: #d4b2a7;
   color: #4a3b32;
@@ -166,7 +166,7 @@ input::placeholder {
   background-color: #c59f93;
 }
 
-// right panel with breed details
+/* right panel with breed details */
 .breed-details-card {
   background-color: #ffffff;
   border-radius: 18px;
@@ -276,7 +276,7 @@ input::placeholder {
   height: 120px;
 }
 
-// cats breeds quiz section
+/* cats breeds quiz section */
 #imagesGallerySection {
   max-width: 1100px;
   margin: 0 auto;
