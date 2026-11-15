@@ -7,10 +7,10 @@ advanced pre-work assignment for code the dream
 
 ## Table of Contents
 
-- [Features](##Features)
-- [API Endpoints Used](##API-Endpoints-Used)
-- [Installation](##Installation)
-- [Usage](##Usage)
+- [Features](#features)
+- [API Endpoints Used](#api-endpoints-used)
+- [Installation](#installation)
+- [Usage](#usage)
 
 ## Features
 
@@ -28,5 +28,33 @@ advanced pre-work assignment for code the dream
 2. `https://api.thecatapi.com/v1/images/search` — to retrieve random cat images with breed names and origin data for the cats' breeds' quiz
 
 ## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/s-riskiyeva/code-the-dream-pw-assignment
+   cd code-the-dream-pw-assignment
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   Create a `.env` file in the root directory of the project and add your API key with the `VITE_` prefix:
+
+   ```env
+   VITE_API_KEY=thecatapi_key
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the local URL shown in your terminal in your browser
 
 ## Usage
