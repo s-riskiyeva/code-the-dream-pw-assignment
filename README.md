@@ -51,9 +51,18 @@ advanced pre-work assignment for code the dream
 
 4. Start the development server:
 
-   ```bash
-   npm run dev
-   ```
+   - **Option A — Development Server (with live reload):**
+
+     ```bash
+     npm run dev
+     ```
+
+   - **Option B — Production Build & Preview:**
+
+     ```bash
+     npm run build
+     npm run preview
+     ```
 
 5. Open the local URL shown in your terminal in your browser
 
