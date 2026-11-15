@@ -10,7 +10,7 @@ advanced pre-work assignment for code the dream
 - [Features](#features)
 - [API Endpoints Used](#api-endpoints-used)
 - [Installation](#installation)
-- [Usage](#usage)
+- [Usage of Technologies](#usage-of-technologies)
 
 ## Features
 
@@ -57,4 +57,9 @@ advanced pre-work assignment for code the dream
 
 5. Open the local URL shown in your terminal in your browser
 
-## Usage
+## Usage of Technologies
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite)
