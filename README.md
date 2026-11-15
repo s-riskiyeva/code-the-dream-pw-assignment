@@ -15,14 +15,17 @@ advanced pre-work assignment for code the dream
 ## Features
 
 - Breeds By Country (`/v1/breeds`):
-  - Search cat breeds by the country of origin ("Egypt", "United States", "Russia", "Thailand").
-  - Click on a breed button to open a detailed profile card with its photo and describing breed group, lifespan, weight, temperament, description, and history.
+  - Search cat breeds by the country of origin ("Egypt", "United States", "Russia", "Thailand")
+  - Click on a breed button to open a detailed profile card with its photo and describing breed group, lifespan, weight, temperament, description, and history
 - Cats Breeds Quiz (`/v1/images/search`):
-  - Gallery of inetractive cards displaying random cat photos with associated breed and country of origin details.
-  - Guess the breed and origin by the photo, then click the card to flip it over and see the correct answer.
-  - Load new sets of cats on demand with the "Wanna See More Cats" button.
+  - Gallery of inetractive cards displaying random cat photos with associated breed and country of origin details
+  - Guess the breed and origin by the photo, then click the card to flip it over and see the correct answer
+  - Load new sets of cats on demand with the "Wanna See More Cats" button
 
 ## API Endpoints Used
+
+1. `https://api.thecatapi.com/v1/breeds` — to retrieve the full list of cat breeds and their detailed properties
+2. `https://api.thecatapi.com/v1/images/search` — to retrieve random cat images with breed names and origin data for the cats' breeds' quiz
 
 ## Installation
 
