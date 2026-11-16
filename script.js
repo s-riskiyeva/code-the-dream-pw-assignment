@@ -20,6 +20,7 @@ const imagesGallerySection = document.getElementById("imagesGallerySection");
 const nameOfCountryInput = document.getElementById("nameOfCountryInput");
 const nameOfCountryButton = document.getElementById("nameOfCountryButton");
 const breedsByCountry = document.getElementById("listOfBreeds");
+const breedDetailsContainer = document.getElementById("breedDetailsCard");
 
 // element locators for cats images quiz section
 const catsImagesContainer = document.getElementById("catsImages");
@@ -29,6 +30,8 @@ const loadRandomCatImageButton = document.getElementById(
 
 // show the breeds by country section
 breedsByCountryButton.addEventListener("click", () => {
+  resetRightPanel();
+  breedsByCountry.innerHTML = "";
   breedsSection.style.display = "flex";
   imagesGallerySection.style.display = "none";
 
@@ -38,6 +41,7 @@ breedsByCountryButton.addEventListener("click", () => {
 
 // show the cat images quiz section
 catImagesGalleryButton.addEventListener("click", () => {
+  resetRightPanel();
   breedsSection.style.display = "none";
   imagesGallerySection.style.display = "block";
 
@@ -50,6 +54,7 @@ catImagesGalleryButton.addEventListener("click", () => {
 // --------------------> ENDPOINT 1 <--------------------
 //fetch full list of cat breeds
 async function catsAllBreeds() {
+  resetRightPanel();
   const response = await fetch(urlAllBreeds, {
     method: "GET",
     headers: {
@@ -73,6 +78,7 @@ async function countryOfOriginFilter(country) {
 
   if (listOfBreedsByCountry.length === 0) {
     breedsByCountry.innerHTML = `<p>No breeds found originating from ${country}.</p>`;
+    resetRightPanel();
     return;
   }
 
@@ -83,7 +89,6 @@ async function countryOfOriginFilter(country) {
     listElement.textContent = `${breedData.name}`;
 
     listElement.addEventListener("click", () => {
-      const breedDetailsContainer = document.getElementById("breedDetailsCard");
       const imageUrl = breedData.image?.url;
 
       const imageContent = imageUrl
@@ -144,6 +149,7 @@ nameOfCountryButton.addEventListener("click", () => {
 
   if (!userInputValue) {
     breedsByCountry.innerHTML = `<p>Please input a country name.</p>`;
+    resetRightPanel();
     return;
   }
 
@@ -155,6 +161,17 @@ nameOfCountryButton.addEventListener("click", () => {
   countryOfOriginFilter(countryName);
   nameOfCountryInput.value = "";
 });
+
+function resetRightPanel() {
+  breedDetailsContainer.innerHTML = `
+    <div class="right-panel-placeholder-message">
+      <p>
+        Select a breed card from the left panel to view full facts and
+        history details
+      </p>
+    </div>
+  `;
+}
 
 // --------------------> ENDPOINT 2 <--------------------
 // fetch 3 random cats images with relevant breeds and origin data
